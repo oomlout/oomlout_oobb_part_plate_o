@@ -134,10 +134,10 @@ def make_scad(**kwargs):
                     for wid in range(3, 11):
                         for hei in range(3, 11):
                             if wid >= hei:
-                                plates.append({"type": "plate", "width": wid,
+                                plates.append({"type": "plate_o", "width": wid,
                                             "height": hei, "thickness": 3, "size": size})
             elif test:
-                plates.append({"type": "plate", "width": 5,
+                plates.append({"type": "plate_o", "width": 5,
                                             "height": 5, "thickness": 3, "size": "oobb"})
             
                 
@@ -166,7 +166,7 @@ def make_scad(**kwargs):
                     hei = plate["height"]
                     dep = plate["thickness"]
                     typ = plate.get("type", "plate")
-                    if extra == "" and typ == "plate":
+                    if True:
                         part = copy.deepcopy(part_default)
                         p3 = copy.deepcopy(kwargs)
                         p3["width"] = wid
@@ -181,10 +181,7 @@ def make_scad(**kwargs):
                         if True:
                             pass
                             parts.append(part)
-                    elif extra != "":
-                        print(f"Skipping plate {plate} because extra is {extra}")
-                    elif typ != "plate":
-                        print(f"Skipping plate {plate} because type is {typ}")
+                    
 
 
         kwargs["parts"] = parts
@@ -203,7 +200,7 @@ def make_scad(**kwargs):
         scad_help.generate_navigation(sort = sort)
 
 
-def get_plate(thing, **kwargs):
+def get_plate_o(thing, **kwargs):
 
     prepare_print = kwargs.get("prepare_print", False)
     width = kwargs.get("width", 1)
